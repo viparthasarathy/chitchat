@@ -7,8 +7,9 @@ const passport       = require('passport');
 const jwt            = require('jwt-simple');
 const db             = require('./config/db');
 const port           = process.env.PORT || 3000;
+const mongoose       = require('mongoose');
 
-
+mongoose.connect(db.url);
 
 app.use(bodyParser.json());
 
@@ -23,6 +24,8 @@ app.use(passport.initialize());
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.use(express.static(__dirname + '/public'));
+
+require('./config/passport')(passport);
 
 require('./app/routes.js')(app);
 
