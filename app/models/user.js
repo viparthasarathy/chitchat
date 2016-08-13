@@ -1,5 +1,8 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-module.exports = mongoose.model('User', {
-  name: {type: String, default: "Anonymous" }
+const userSchema = new Schema({
+  name: { type: String, default: "Anonymous" }
 });
+
+module.exports = mongoose.model('User', userSchema);
