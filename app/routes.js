@@ -1,5 +1,5 @@
 const User = require('./models/user');
-const db = require('../config/db');
+
 
 module.exports = function(app) {
 
@@ -23,10 +23,8 @@ module.exports = function(app) {
   app.post('/authenticate', (req, res) => {
     User.findOne({
       name: req.body.name
-
     }, (err, user) => {
       if (err) throw err;
-
       if (!user) {
         res.send({ success: false, msg: 'User not found.' })
       } else {
@@ -37,10 +35,10 @@ module.exports = function(app) {
           } else {
             res.send({ success: false, msg: 'Password is incorrect.' });
           }
-        })
+        });
       }
-    })
-  })
+    });
+  });
 
   app.get('*', (req, res) => {
     res.sendfile('./public/views/index.html');
