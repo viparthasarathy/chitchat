@@ -1,4 +1,6 @@
 const User = require('./models/user');
+const jwt  = require('jwt-simple');
+const db   = require('../config/db');
 
 
 module.exports = function(app) {
